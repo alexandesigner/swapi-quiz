@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 const Score = props => (
   <ScoreWrapper>
-    <ScoreValue>10</ScoreValue>
+    <ScoreValue>{props.score}</ScoreValue>
     <ScoreText>seus pontos</ScoreText>
   </ScoreWrapper>
 )

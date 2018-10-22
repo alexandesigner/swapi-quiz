@@ -25,8 +25,7 @@ export default (state = initialState, action) => {
       }
     case SET_CURRENT_SCORE:
       return {
-        ...state,
-        currentScore: action.payload
+        currentScore: state.currentScore + 10
       }
     case INCREMENT_MAX_SCORE:
       return {

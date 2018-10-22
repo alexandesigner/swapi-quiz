@@ -18,7 +18,7 @@ class ModalScore extends Component {
     this.state = {
       name: '',
       email: '',
-      score: props.currentScore
+      score: ''
     }
   }
   changeName = (event) => {
@@ -71,7 +71,7 @@ class ModalScore extends Component {
           </CloseButton>
         </Header>
         <Content>
-          <Score />
+          <Score score={this.props.currentScore} />
           <Label>Preencha o form abaixo para salvar sua pontuação:</Label>
           <Form onSubmit={() => this.submitScore()}>
             <LabelField htmlFor="name">Nome</LabelField>

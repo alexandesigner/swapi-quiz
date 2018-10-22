@@ -25,20 +25,24 @@ class Character extends Component {
     this.props.setCurrentIndex(index)
     this.props.getModalDetails(true)
   }
+  addPoints = () => {
+    this.props.getCurrentScore(1)
+  }
   answerName = (event) => {
     let nameId = event.target.getAttribute("data-name-id");
     let fieldName = event.target.value
     const currentCharacter = this.props.thumbnails[nameId]
 
     if(currentCharacter.label === fieldName) {
-      this.props.getCurrentScore(1)
+      this.addPoints()
     }
+
   }
   render() {
     return (
       <CharacterWrapper>
+        {JSON.stringify(this.props.currentScore)}
         <Card>
-          <Name>{this.props.character.name}</Name>
           <Thumbnail 
             src={this.renderThumbnails(this.props.index)}
             width="120"
@@ -48,7 +52,7 @@ class Character extends Component {
             <Field 
               onChange={this.answerName}
               data-name-id={this.props.index} 
-              name={this.props.index} 
+              name="answer-name" 
               placeholder="What name the hero?" 
               type="text" 
             />
@@ -84,11 +88,6 @@ const Card = styled.article`
     background: rgba(0,0,0,0);
     box-shadow: 0 0 0 2px rgba(0,0,0,0.2);
   }
-`
-
-const Name = styled.span`
-  color: #fff320;
-  margin-bottom: 15px;
 `
 
 const CardFooter = styled.footer`
@@ -142,7 +141,8 @@ const Button = styled.button`
 const mapStateToProps = state => ({
   modalStart: state.quiz.modalStart,
   charactersList: state.characters.charactersList,
-  thumbnails: state.characters.thumbnails
+  thumbnails: state.characters.thumbnails,
+  currentScore: state.score.currentScore
 })
 
 const mapDispatchToProps = dispatch => ({
