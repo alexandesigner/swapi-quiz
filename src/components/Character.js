@@ -31,8 +31,10 @@ class Character extends Component {
   answerName = (event) => {
     let nameId = event.target.getAttribute("data-name-id");
     let fieldName = event.target.value
+    
     const currentCharacter = this.props.thumbnails[nameId]
-
+    
+    // check if name has exist
     if(currentCharacter.label === fieldName) {
       this.addPoints()
     }
@@ -41,7 +43,6 @@ class Character extends Component {
   render() {
     return (
       <CharacterWrapper>
-        {JSON.stringify(this.props.currentScore)}
         <Card>
           <Thumbnail 
             src={this.renderThumbnails(this.props.index)}
