@@ -18,7 +18,7 @@ class ModalScore extends Component {
     this.state = {
       name: '',
       email: '',
-      score: props.score
+      score: props.currentScore
     }
   }
   changeName = (event) => {
