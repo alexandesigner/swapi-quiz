@@ -34,7 +34,6 @@ class Quiz extends Component {
     this.state = {
       seconds: 10 // Set initial time
     }
-    console.log(this.props.charactersList)
   }
   componentDidMount() {
 
@@ -128,6 +127,7 @@ class Quiz extends Component {
   }
   render() {
     let { time, charactersList, currentScore } = this.props
+    console.log(this.props.charactersList)
     return (
       <QuizContainer>
         <Toolbar

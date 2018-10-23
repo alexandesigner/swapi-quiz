@@ -54,28 +54,28 @@ const initialState = {
     label: 'Obi-Wan Kenobi'
   }, {
     id: 10,
-    url: `thumbnails/luke-skywalker.jpg`,
-    label: 'Luke Skywalker'
+    url: `thumbnails/anakim-skywalker.jpg`,
+    label: 'Anakim Skywalker'
   }, {
     id: 11,
-    url: `thumbnails/C-3PO.jpg`,
-    label: 'C-3PO'
+    url: `thumbnails/wilhuff-tarkin.jpg`,
+    label: 'Wilhuff Tarkin'
   }, {
     id: 12,
-    url: `thumbnails/R2-D2.jpg`,
-    label: 'R2-D2'
+    url: `thumbnails/chewbacca`,
+    label: 'Chewbacca'
   }, {
     id: 13,
-    url: `thumbnails/darth-vader.jpg`,
-    label: 'Darth Vader'
+    url: `thumbnails/han-solo.jpg`,
+    label: 'Han Solo'
   }, {
     id: 14,
-    url: `thumbnails/leia-organa.jpg`,
-    label: 'Leia Organa'
+    url: `thumbnails/greedo.jpg`,
+    label: 'Greedo'
   }, {
     id: 15,
-    url: `thumbnails/owen-lars.jpg`,
-    label: 'Owen Lars'
+    url: `thumbnails/jabba-desilijic-tiure.jpg`,
+    label: 'Jabba Desilijic Tiure'
   }, {
     id: 16,
     url: `thumbnails/beru-whitesun-lars.jpg`,
