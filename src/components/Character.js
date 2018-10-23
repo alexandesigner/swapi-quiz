@@ -72,7 +72,6 @@ class Character extends Component {
               placeholder="What name the character?" 
               type="text" 
             />
-            <span>{this.props.character.name}</span>
             <Button onClick={() => this.openDetails(this.props.index)}>
               <HelpCircle size={32} />
             </Button>

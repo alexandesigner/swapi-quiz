@@ -21,7 +21,6 @@ const Toolbar = props => (
       alt="Star Wars Logo" 
       height="28" 
     />
-    <span>{props.currentScore}</span>
     {!props.hideCountdown ? <Countdown 
       countdown={props.countdown} 
     /> : <PlayAgainButton onClick={() => props.history.push('/quiz')}>Play Again!</PlayAgainButton>}
