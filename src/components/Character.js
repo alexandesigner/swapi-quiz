@@ -44,7 +44,7 @@ class Character extends Component {
     // check if name has exist
     if(currentCharacter.label === fieldName) {
       // add points to current score
-      if (useHelp === 'true') {
+      if (useHelp === 'false') {
         this.props.getMaxScore(1) // 10 points
       } else {
         this.props.getMinScore(1) // 5 points
