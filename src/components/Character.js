@@ -16,30 +16,37 @@ import {
 import { getMaxScore, getCurrentScore } from '../redux/modules/score/actions'
 
 class Character extends Component {
+  constructor(props) {
+    super(props)
+    this.inputRef = React.createRef()
+  }
   renderThumbnails = (index) => {
-    return ''
-    // const thumbFilter = this.props.thumbnails.filter(item => item.id === index)
-    // return `${window.location.origin}/${thumbFilter[0].url}`
+    return `${window.location.origin}/${this.props.thumbnails[index].url}`
   }
   openDetails = (index) => {
     this.props.setCurrentDetails(this.props.character)
     this.props.setCurrentIndex(index)
     this.props.getModalDetails(true)
+    this.inputRef.current.setAttribute("data-use-help", true)
   }
-  addPoints = () => {
-    this.props.getMaxScore()
-  }
-  answerName = (event) => {
-    const target = event.target
-    let nameId = target.getAttribute("data-name-id");
+  answerName = () => {
+    // Get field target
+    let target = this.inputRef.current
+    let nameId = target.getAttribute("data-name-id")
     let fieldName = target.value
-    
-    const currentCharacter = this.props.thumbnails[nameId]
+    let currentCharacter = this.props.thumbnails[nameId]
+    let useHelp = target.getAttribute("data-use-help")
     
     // check if name has exist
     if(currentCharacter.label === fieldName) {
+      // add points to current score
+      if (!useHelp) {
+        this.props.getMinScore(1) // 5 points
+      } else {
+        this.props.getMaxScore(1) // 10 points
+      }
+      // disable input on hit
       target.disabled = true
-      this.addPoints()
     }
   }
   render() {
@@ -53,10 +60,12 @@ class Character extends Component {
           />
           <CardFooter>
             <Field 
+              ref={this.inputRef}
               onChange={this.answerName}
-              data-name-id={this.props.index} 
+              data-name-id={this.props.index}
+              data-use-help={false} 
               name="answer-name" 
-              placeholder="What name the hero?" 
+              placeholder="What name the character?" 
               type="text" 
             />
             <span>{this.props.character.name}</span>

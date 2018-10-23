@@ -10,11 +10,29 @@ Modal.setAppElement('#root')
 
 class ModalDetails extends Component {
   renderThumb = (index) => {
-    const thumbFilter = this.props.thumbnails.filter(item => item.id === index)
-    return `${window.location.origin}/${thumbFilter[0].url}`
+    return `${window.location.origin}/${this.props.thumbnails[index].url}`
+  }
+  renderPlanets = (homeworld) => {
+    if (homeworld !== undefined) {
+      if (homeworld.length > 0) {
+        const planetId = homeworld.match(/\d+/g).map(Number)
+        return this.props.planetsList[planetId].name
+      } else {
+        return 'n/a'
+      }
+    }
+  }
+  renderSpecie = (specie) => {
+    if (specie !== undefined) {
+      if (specie.length > 0) {
+        const specieId = specie[0].match(/\d+/g).map(Number)
+        return this.props.speciesList[specieId].name
+      } else {
+        return 'n/a'
+      }
+    }
   }
   render() {
-    console.log(this.props.currentDetails)
     return (
       <Modal 
         isOpen={this.props.modalDetails}
@@ -42,8 +60,11 @@ class ModalDetails extends Component {
             src={this.renderThumb(this.props.currentIndex)}
             width="100%"
           />
+          <Label><strong>Specie: </strong> {this.renderSpecie(this.props.currentDetails.species)}</Label>
+          <Label><strong>Planet: </strong> {this.renderPlanets(this.props.currentDetails.homeworld)}</Label>
           <Label><strong>Height: </strong> {this.props.currentDetails.height}</Label>
           <Label><strong>Hair: </strong> {this.props.currentDetails.hair_color}</Label>
+          <div></div>
         </Content>
       </Modal>
     )
@@ -94,7 +115,9 @@ const mapStateToProps = state => ({
   modalDetails: state.characters.modalDetails,
   thumbnails: state.characters.thumbnails,
   currentDetails: state.characters.currentDetails,
-  currentIndex: state.characters.currentIndex
+  currentIndex: state.characters.currentIndex,
+  planetsList: state.planets.planetsList,
+  speciesList: state.species.speciesList
 })
 
 const mapDispatchToProps = dispatch => ({

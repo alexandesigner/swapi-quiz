@@ -35,8 +35,6 @@ class CharactersList extends Component {
             />
           ))}
         </Characters>
-        {charactersLimit}
-        {maxCount}
         {charactersLimit !== maxCount && 
           <LoadMoreButton onClick={() => this.loadMore()}>Load more</LoadMoreButton>
         }

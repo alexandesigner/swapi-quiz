@@ -38,6 +38,7 @@ const UserInfo = styled.div`
 const UserName = styled.strong`
   font-size: 22px;
   font-weight: bold;
+  color: #fff320;
 `
 
 const UserEmail = styled.span`

@@ -9,9 +9,7 @@ import countdown from './countdown'
 import score from './score'
 import rank from './rank'
 import species from './species'
-import vehicles from './vehicles'
 import planets from './planets'
-import films from './films'
 
 export default combineReducers({
   quiz,
@@ -20,7 +18,5 @@ export default combineReducers({
   score,
   rank,
   species,
-  planets,
-  films,
-  vehicles
-});
+  planets
+})
