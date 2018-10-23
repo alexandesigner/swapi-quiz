@@ -52,6 +52,7 @@ class Rank extends Component {
 
 const RankContainer = styled.section`
   display: block;
+  padding-top: 80px;
 `
 
 const Content = styled.div`

@@ -40,7 +40,7 @@ class ModalStart extends Component {
         <Content>
           <Description>Let's test your knowledge in Star Wars</Description>
           <Description>You have <strong>2 minutes</strong> for the largest number of <strong>names of the characters</strong>, each <strong>hit you get 10 points</strong>, if you <strong>hit using the tip earn 5 points.</strong></Description>
-          <StartButton onClick={() => this.startedQuiz()}>Let's play now!</StartButton>
+          {this.props.characterList.length > 0 ? <StartButton onClick={() => this.startedQuiz()}>Let's play now!</StartButton> : <BoxWrapper><StartButton disabled>Let's play now!</StartButton><span>Wait a moment...</span></BoxWrapper>}
         </Content>
       </Modal>
     )
@@ -66,6 +66,17 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   padding: 15px;
+`
+
+const BoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  & span {
+    color: #999;
+    font-size: 12px;
+  }
 `
 
 const Description = styled.p`
@@ -96,10 +107,19 @@ const StartButton = styled.button`
   &:active, &:focus {
     transform: scale(1, 1);
   }
+  &:disabled {
+    opacity: 0.6;
+    background: #f1f1f1;
+    cursor: default;
+    &:hover, &:active, &:focus {
+      transform: scale(1, 1);
+    }
+  }
 `
 
 const mapStateToProps = state => ({
-  modalStart: state.quiz.modalStart
+  modalStart: state.quiz.modalStart,
+  characterList: state.characters.charactersList
 })
 
 const mapDispatchToProps = dispatch => ({

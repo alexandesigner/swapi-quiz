@@ -1,4 +1,4 @@
-import HTTP from '../../../api';
+import * as HTTP from '../../../api'
 import { 
   SET_CHARACTERS, 
   ERROR_CHARACTERS,
@@ -6,30 +6,31 @@ import {
   SET_CHARACTERS_THUMBNAILS,
   SET_CURRENT_DETAILS,
   SET_CURRENT_INDEX
-} from '../../types';
+} from '../../types'
 
 /*
   Set characters
 */
 export const setCharacters = characters => ({
   type: SET_CHARACTERS,
-  payload: characters.results
-});
+  payload: characters
+})
 
 /*
   Get characters
 */
 export const getCharacters = () => dispatch => {
-  HTTP.get(`/people`)
+    new Promise((resolve, reject) => {
+      HTTP.getPeoples('https://swapi.co/api/people', [], resolve, reject)
+    })
     .then(res => {
-      const characters = res.data;
-      dispatch(setCharacters(characters))
+      dispatch(setCharacters(res))
     })
     .catch(err => {
       const error = err.message
-      dispatch(errorCharacters(error));
-    });
- }
+      dispatch(errorCharacters(error))
+    })
+}
 
 /*
   Error characters
@@ -37,7 +38,7 @@ export const getCharacters = () => dispatch => {
 export const errorCharacters = error => ({
   type: ERROR_CHARACTERS,
   payload: { error }
-});
+})
 
 /*
   Set modal details
@@ -45,7 +46,7 @@ export const errorCharacters = error => ({
 export const setModalDetails = visible => ({
   type: SET_MODAL_DETAILS,
   payload: visible
-});
+})
 
 /*
   Get modal details
@@ -68,7 +69,7 @@ export const setCharacterThumbnails = thumbnails => ({
 export const setCurrentDetails = character => ({
   type: SET_CURRENT_DETAILS,
   payload: character
-});
+})
 
 /*
   Get Current Details
@@ -83,4 +84,4 @@ export const getCurrentDetails = (character) => dispatch => {
 export const setCurrentIndex = (currentIndex) => ({
   type: SET_CURRENT_INDEX,
   payload: currentIndex
-});
+})

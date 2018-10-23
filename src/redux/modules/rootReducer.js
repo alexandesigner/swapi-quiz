@@ -8,11 +8,19 @@ import characters from './characters'
 import countdown from './countdown'
 import score from './score'
 import rank from './rank'
+import species from './species'
+import vehicles from './vehicles'
+import planets from './planets'
+import films from './films'
 
 export default combineReducers({
   quiz,
   characters,
   countdown,
   score,
-  rank
+  rank,
+  species,
+  planets,
+  films,
+  vehicles
 });

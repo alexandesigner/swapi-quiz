@@ -65,7 +65,6 @@ class ModalScore extends Component {
           <CloseButton onClick={() => {
             this.props.history.push('/')
             this.props.getModalScore(false)
-            this.props.resetUserInfo()
           }}>
             <X />
           </CloseButton>

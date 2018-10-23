@@ -2,7 +2,8 @@ import {
   SET_MODAL_SCORE, 
   INCREMENT_MAX_SCORE, 
   INCREMENT_MIN_SCORE,
-  SET_CURRENT_SCORE
+  SET_CURRENT_SCORE,
+  RESET_SCORE
 } from '../../types'
 
 // Set initial state array
@@ -25,18 +26,21 @@ export default (state = initialState, action) => {
       }
     case SET_CURRENT_SCORE:
       return {
-        currentScore: state.currentScore + 10
+        ...state,
+        currentScore: action.payload
       }
     case INCREMENT_MAX_SCORE:
       return {
         ...state,
-        maxScore: action.payload * 10
+        maxScore: state.maxScore + 10
       }
     case INCREMENT_MIN_SCORE:
       return {
         ...state,
-        minScore: action.payload * 10 / 2
+        minScore: state.minScore + 5
       }
+    case RESET_SCORE:
+      return initialState
     default:
       return state
   }

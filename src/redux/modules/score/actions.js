@@ -2,7 +2,8 @@ import {
   SET_MODAL_SCORE, 
   INCREMENT_MAX_SCORE, 
   INCREMENT_MIN_SCORE,
-  SET_CURRENT_SCORE
+  SET_CURRENT_SCORE,
+  RESET_SCORE
 } from '../../types';
 
 /*
@@ -16,7 +17,7 @@ export const setModalScore = visible => ({
 /*
   Get visible modal score
 */
-export const getModalScore = (visible) => dispatch => {
+export const getModalScore = visible => dispatch => {
   dispatch(setModalScore(visible))
 }
 
@@ -31,7 +32,7 @@ export const setMaxScore = score => ({
 /*
   Get max score
 */
-export const getMaxScore = (score) => dispatch => {
+export const getMaxScore = score => dispatch => {
   dispatch(setMaxScore(score))
 }
 
@@ -46,7 +47,7 @@ export const setMinScore = score => ({
 /*
   Get min score
 */
-export const getMinScore = (score) => dispatch => {
+export const getMinScore = score => dispatch => {
   dispatch(setMinScore(score))
 }
 
@@ -56,11 +57,19 @@ export const getMinScore = (score) => dispatch => {
 export const setCurrentScore = score => ({
   type: SET_CURRENT_SCORE,
   payload: score
-});
+})
 
 /*
   Get current Score
 */
-export const getCurrentScore = (score) => dispatch => {
+export const getCurrentScore = score => dispatch => {
   dispatch(setCurrentScore(score))
 }
+
+
+/*
+  Set set current score
+*/
+export const resetScore = () => ({
+  type: RESET_SCORE
+})

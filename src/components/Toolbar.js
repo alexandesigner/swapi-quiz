@@ -33,6 +33,9 @@ const ToolbarWrapper = styled.header`
   justify-content: center;
   align-items: center;
   height: 80px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 `
 
 const Logo = styled.img`

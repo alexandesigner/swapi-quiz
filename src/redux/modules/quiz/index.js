@@ -7,6 +7,7 @@ import {
 // Set initial state array
 const initialState = {
   modalStart: false,
+  firstGame: true,
   started: false,
   finished: false
 }
@@ -31,7 +32,8 @@ export default (state = initialState, action) => {
     case SET_MODAL_START:
       return {
         ...state,
-        modalStart: action.payload
+        modalStart: action.payload,
+        firstGame: false
       }
     default:
       return state

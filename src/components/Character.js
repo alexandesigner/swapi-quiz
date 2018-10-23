@@ -13,12 +13,13 @@ import {
   setCurrentIndex 
 } from '../redux/modules/characters/actions'
 
-import { getCurrentScore } from '../redux/modules/score/actions'
+import { getMaxScore, getCurrentScore } from '../redux/modules/score/actions'
 
 class Character extends Component {
   renderThumbnails = (index) => {
-    const thumbFilter = this.props.thumbnails.filter(item => item.id === index)
-    return `${window.location.origin}/${thumbFilter[0].url}`
+    return ''
+    // const thumbFilter = this.props.thumbnails.filter(item => item.id === index)
+    // return `${window.location.origin}/${thumbFilter[0].url}`
   }
   openDetails = (index) => {
     this.props.setCurrentDetails(this.props.character)
@@ -26,19 +27,20 @@ class Character extends Component {
     this.props.getModalDetails(true)
   }
   addPoints = () => {
-    this.props.getCurrentScore(1)
+    this.props.getMaxScore()
   }
   answerName = (event) => {
-    let nameId = event.target.getAttribute("data-name-id");
-    let fieldName = event.target.value
+    const target = event.target
+    let nameId = target.getAttribute("data-name-id");
+    let fieldName = target.value
     
     const currentCharacter = this.props.thumbnails[nameId]
     
     // check if name has exist
     if(currentCharacter.label === fieldName) {
+      target.disabled = true
       this.addPoints()
     }
-
   }
   render() {
     return (
@@ -57,6 +59,7 @@ class Character extends Component {
               placeholder="What name the hero?" 
               type="text" 
             />
+            <span>{this.props.character.name}</span>
             <Button onClick={() => this.openDetails(this.props.index)}>
               <HelpCircle size={32} />
             </Button>
@@ -114,6 +117,13 @@ const Field = styled.input`
   &:hover, &:focus, &:active {
     box-shadow: 0 2px 0 0 #fff320;
   }
+  &:disabled {
+    opacity: 0.4;
+    color: #fff320;
+    &:hover, &:focus, &:active {
+      box-shadow: 0 2px 0 0 #000;
+    }
+  }
 `
 
 const Thumbnail = styled.img`
@@ -143,13 +153,16 @@ const mapStateToProps = state => ({
   modalStart: state.quiz.modalStart,
   charactersList: state.characters.charactersList,
   thumbnails: state.characters.thumbnails,
-  currentScore: state.score.currentScore
+  currentScore: state.score.currentScore,
+  maxScore: state.score.maxScore,
+  minScore: state.score.minScore
 })
 
 const mapDispatchToProps = dispatch => ({
   getModalDetails: (visible) => dispatch(getModalDetails(visible)),
   setCurrentDetails: (character) => dispatch(setCurrentDetails(character)),
   setCurrentIndex: (currentIndex) => dispatch(setCurrentIndex(currentIndex)),
+  getMaxScore: (score) => dispatch(getMaxScore(score)),
   getCurrentScore: (score) => dispatch(getCurrentScore(score))
 })
 

@@ -14,6 +14,7 @@ class ModalDetails extends Component {
     return `${window.location.origin}/${thumbFilter[0].url}`
   }
   render() {
+    console.log(this.props.currentDetails)
     return (
       <Modal 
         isOpen={this.props.modalDetails}
