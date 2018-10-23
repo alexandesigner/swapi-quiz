@@ -13,7 +13,11 @@ import {
   setCurrentIndex 
 } from '../redux/modules/characters/actions'
 
-import { getMaxScore, getCurrentScore } from '../redux/modules/score/actions'
+import { 
+  getMaxScore, 
+  getCurrentScore, 
+  getMinScore 
+} from '../redux/modules/score/actions'
 
 class Character extends Component {
   constructor(props) {
@@ -40,10 +44,10 @@ class Character extends Component {
     // check if name has exist
     if(currentCharacter.label === fieldName) {
       // add points to current score
-      if (!useHelp) {
-        this.props.getMinScore(1) // 5 points
-      } else {
+      if (useHelp === 'true') {
         this.props.getMaxScore(1) // 10 points
+      } else {
+        this.props.getMinScore(1) // 5 points
       }
       // disable input on hit
       target.disabled = true
@@ -172,6 +176,7 @@ const mapDispatchToProps = dispatch => ({
   setCurrentDetails: (character) => dispatch(setCurrentDetails(character)),
   setCurrentIndex: (currentIndex) => dispatch(setCurrentIndex(currentIndex)),
   getMaxScore: (score) => dispatch(getMaxScore(score)),
+  getMinScore: (score) => dispatch(getMinScore(score)),
   getCurrentScore: (score) => dispatch(getCurrentScore(score))
 })
 

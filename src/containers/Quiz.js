@@ -32,8 +32,9 @@ class Quiz extends Component {
     super(props)
     this.timer = 0
     this.state = {
-      seconds: 120 // Set initial time
+      seconds: 10 // Set initial time
     }
+    console.log(this.props.charactersList)
   }
   componentDidMount() {
 
