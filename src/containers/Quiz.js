@@ -127,7 +127,6 @@ class Quiz extends Component {
   }
   render() {
     let { time, charactersList, currentScore } = this.props
-    console.log(this.props.charactersList)
     return (
       <QuizContainer>
         <Toolbar
